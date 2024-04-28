@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ObjectDetection-YOLOv8</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+<!--    <link rel="stylesheet" href="styles.css">-->
+    <style>
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #F9EFDB;
+    overflow-x: hidden;
+}
+
+.header {
+    background-color: #EBD9B4;
+    padding: 1rem;
+    border-bottom: 2px solid #9DBC98;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 100;
+    transition: all 0.3s ease-in-out;
+}
+
+.header.scrolled {
+    background-color: #EBD9B4;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    transform: translateY(-100%);
+}
+
+.hero {
+    background-color: #638889;
+    color: #fff;
+    padding: 4rem 0;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    overflow: hidden;
+    position: relative;
+    transform: translateY(100%);
+    animation: slide-up 1s ease-in-out forwards;
+}
+
+@keyframes slide-up {
+    0% {
+        transform: translateY(100%);
+    }
+    100% {
+        transform: translateY(0);
+    }
+}
+
+.hero h1 {
+    font-size: 3rem;
+    margin-bottom: 20px;
+    animation: fade-in 1s ease-in-out forwards;
+}
+
+@keyframes fade-in {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+.hero p {
+    font-size: 1.5rem;
+    margin-bottom: 40px;
+    animation: fade-in 1s ease-in-out forwards;
+    animation-delay: 0.5s;
+}
+
+.hero button[type="button"] {
+    background-color: #EBD9B4;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    animation: fade-in 1s ease-in-out forwards;
+    animation-delay: 1s;
+}
+
+.features {
+    background-color: #F9EFDB;
+    padding: 4rem 0;
+    animation: slide-up 1s ease-in-out forwards;
+    animation-delay: 1.5s;
+}
+
+.feature-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.feature-grid figure {
+    background-color: #EBD9B4;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    animation: fade-in 1s ease-in-out forwards;
+    animation-delay: 2s;
+}
+
+.feature-grid figcaption {
+    font-size: 1.2rem;
+    text-align: center;
+    color: #638889;
+}
+
+.main-content {
+    background-color: #F9EFDB;
+    padding: 4rem 0;
+    animation: slide-up 1s ease-in-out forwards;
+    animation-delay: 2.5s;
+}
+
+.main-content.row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.main-content.col-md-6 {
+    flex-basis: 40%;
+    margin: 20px;
+    background-color: #EBD9B4;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 00 10px rgba(0, 0, 0, 0.2);
+    animation: fade-in 1s ease-in-out forwards;
+    animation-delay: 3s;
+}
+
+.contact {
+    background-color: #638889;
+    color: #fff;
+    padding: 4rem 0;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    overflow: hidden;
+    position: relative;
+    transform: translateY(100%);
+    animation: slide-up 1s ease-in-out forwards;
+    animation-delay: 3.5s;
+}
+
+.contact form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    animation: fade-in 1s ease-in-out forwards;
+    animation-delay: 4s;
+}
+
+.contact label {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+    color: #F9EFDB;
+}
+
+.contact input,.contact textarea {
+    padding: 10px;
+    border: none;
+    border-radius: 10px;
+    background-color: #F9EFDB;
+    color: #638889;
+    width: 100%;
+    margin-bottom: 20px;
+    animation: fade-in 1s ease-in-out forwards;
+    animation-delay: 4.5s;
+}
+
+.contact button[type="submit"] {
+    background-color: #EBD9B4;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    animation: fade-in 1s ease-in-out forwards;
+    animation-delay: 5s;
+}
+
+.contact button[type="submit"]:hover {
+    background-color: #9DBC98;
+}
+
+.footer {
+    background-color: #638889;
+    color: #fff;
+    padding: 2rem 0;
+    border-top: 2px solid #9DBC98;
+    text-align: center;
+    animation: slide-up 1s ease-in-out forwards;
+    animation-delay: 5.5s;
+}
+
+@media (max-width: 767.98px) {
+  .hero {
+        padding: 2rem 0;
+    }
+
+  .features {
+        padding: 2rem 0;
+    }
+
+  .main-content {
+        padding: 2rem 0;
+    }
+
+  .contact {
+        padding: 2rem 0;
+    }
+}
+    </style>
+</head>
+<body>
+    <header class="header">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <a class="navbar-brand" href="#">Object Detection</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/home">Home <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/FrontPage">Video</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/webcam">LiveWebcam</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <h1 class="display-4">Realtime Object Detection</h1>
+                    <p class="lead">Sample Results</p>
+                    <a class="btn btn-primary" href="#features">Learn More</a>
+                </div>
+                <div class="col-md-6">
+                    <img src="../static/images/1.png" alt="YOLOv8 Results 1" class="img-fluid">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="features" id="features">
+        <div class="container">
+            <h2 class="display-5">Features</h2>
+            <div class="row">
+                <div class="col-md-4">
+                    <figure>
+                        <img src="../static/images/1.png" alt="YOLOv8 Results 1" class="img-fluid">
+                        <figcaption>Results 1</figcaption>
+                    </figure>
+                </div>
+                <div class="col-md-4">
+                    <figure>
+                        <img src="../static/images/2.png" alt="YOLOv8 Results 2" class="img-fluid">
+                        <figcaption>Results 2</figcaption>
+                    </figure>
+                </div>
+                <div class="col-md-4">
+                    <figure>
+                        <img src="../static/images/3.png" alt="YOLOv8 Results 3" class="img-fluid">
+                        <figcaption>Results 3</figcaption>
+                    </figure>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="main-content">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <h2 class="display-5">Object Detection using YOLOv8</h2>
+                    <p>FPS of Video: FPS represents the Frame Rate, in case of GPU the FPS will be high while in case of CPU the FPS will be low</p>
+                    <p>Shape of Current Frame: The shape of current frame i.e. Resolution will be calculated</p>
+                    <p>Detections in Current Frame: Total detections in each of the frame will be calculated</p>
+                </div>
+                <div class="col-md-6">
+                    <img src="../static/images/1.png" alt="Sample Results" class="img-fluid">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="contact">
+        <div class="container">
+            <h2 class="display-5">Contact</h2>
+            <p>In case of any query do let me know</p>
+            <form>
+                <div class="form-group">
+                    <label for="name">Name:</label>
+                    <input type="text" id="name" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email ID:</label>
+<input type="email" id="email" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="message">Message:</label>
+                    <textarea id="message" class="form-control" rows="3" required></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">SEND MESSAGE</button>
+            </form>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <p class="text-center">Object Detection Solutions</p>
+        </div>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+</body>
+</html>

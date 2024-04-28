@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Video</title>
+    <style>
+        body {
+            color: white;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #333;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header.navbar {
+            background-color: #000;
+            padding: 10px 0;
+            border-bottom: 2px solid #4CAF50;
+        }
+
+        .navbar ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+
+        .navbar li {
+            display: inline-block;
+            margin-right: 20px;
+        }
+
+        .navbar li a {
+            text-decoration: none;
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .navbar li a:hover {
+            background-color: #4CAF50;
+        }
+
+        .feature-box {
+            background-color: #000;
+            text-align: center;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 10px;
+        }
+
+        .feature-box h1 {
+            margin: 0;
+        }
+
+        section.col-sm {
+            background-color: #000;
+            border-radius: 10px;
+            overflow: hidden;
+            margin-bottom: 20px;
+        }
+
+        img {
+            display: block;
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+        }
+
+        .upload-form {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .upload-form label,
+        .upload-form button {
+            background-color: #4CAF50;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+
+        .upload-form label:hover,
+        .upload-form button:hover {
+            background-color: #45a049;
+        }
+
+        input[type="file"] {
+            display: none;
+        }
+
+        .form-error {
+            color: #ff3333;
+            margin-top: 10px;
+        }
+
+        .instruction {
+            font-size: 16px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+<header class="navbar">
+    <nav>
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/webcam">Webcam</a></li>
+        </ul>
+    </nav>
+</header>
+<div class="container">
+    <header class="feature-box">
+        <h1>Object Detection using YOLOv8</h1>
+    </header>
+    <section class="col-sm">
+        <img src="{{ url_for('video') }}" alt="Upload video">
+    </section>
+    <div class="upload-form">
+        <form method="POST" enctype="multipart/form-data">
+            {{ form.hidden_tag() }}
+            <label for="file-upload">Upload Video</label>
+            {{ form.file(class_="custom-file-input", id="file-upload") }}
+            <button type="submit" name="favorite" value="x">Submit</button>
+            {% if form.file.errors %}
+                <div class="form-error">{{ form.file.errors[0] }}</div>
+            {% endif %}
+        </form>
+    </div>
+    <div class="instruction">
+        <p>After uploading your video, click the "Submit" button to start object detection.</p>
+    </div>
+</div>
+</body>
+</html>
